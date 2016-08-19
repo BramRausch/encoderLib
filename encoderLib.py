@@ -11,7 +11,7 @@ class encoder:
     def __init__(self, clk_pin, dt_pin):
         # Configure the rotary encoder pins
         self.clk = Pin(clk_pin, Pin.IN)
-        self.cdt  = Pin(dt_pin, Pin.IN)
+        self.dt  = Pin(dt_pin, Pin.IN)
     
     def getValue(self):
         self.currentTime = time.ticks_ms() # Get new tick count
