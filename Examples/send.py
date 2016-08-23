@@ -5,8 +5,8 @@ UDP_IP = "192.168.1.114"
 UDP_PORT = 5005
 MESSAGE = "Hello, World!"
 
-sock = socket.socket(socket.AF_INET, # Internet
-                     socket.SOCK_DGRAM) # UDP
+sock = socket.socket(socket.AF_INET,  # Internet
+                     socket.SOCK_DGRAM)  # UDP
 
 last = 0
 var = 0
@@ -17,7 +17,7 @@ while True:
     if value < last:
         last = value
         if var > 0:
-            var-=1
+            var -= 1
         sock.sendto(str(var), (UDP_IP, UDP_PORT))
     elif value > last:
         last = value
