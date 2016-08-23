@@ -2,29 +2,34 @@ import time
 from machine import Pin
 
 class encoder:
-    currentTime = time.ticks_ms()
+    # Init variables
+    currentTime = time.ticks_ms() # Get current tick count
     loopTime    = currentTime
     encoder_clk_prev = False;
     i = 0
 
-    def __init__(self, clk_pin, cs_pin):
+    def __init__(self, clk_pin, dt_pin):
+        # Configure the rotary encoder pins
         self.clk = Pin(clk_pin, Pin.IN)
-        self.cs  = Pin(cs_pin, Pin.IN)
+        self.dt  = Pin(dt_pin, Pin.IN)
     
     def getValue(self):
-        self.currentTime = time.ticks_ms()
+        self.currentTime = time.ticks_ms() # Get new tick count
 
-        if self.currentTime >= (self.loopTime + 5):
-            self.encoder_clk = self.clk.value()
-            self.encoder_cs  = self.cs.value()
-
+        if self.currentTime >= (self.loopTime + 5): # Non blocking delay of 5ms
+            # Read the rotary encoder pins
+            self.encoder_clk = self.clk.value() 
+            self.encoder_dt  = self.dt.value()
+            
+            # If rotary encoder rotated
             if not self.encoder_clk and self.encoder_clk_prev:
-                if self.encoder_cs:
+                # Get direction of rotation
+                if self.encoder_dt:
                     self.i+=1
                 else:
                     self.i-=1
 
             self.encoder_clk_prev = self.encoder_clk    
             self.loopTime         = self.currentTime
-        return(self.i)
+        return(self.i) # Return rotary encoder value
         
