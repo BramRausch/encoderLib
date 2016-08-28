@@ -4,7 +4,7 @@ import neopixel
 
 np = neopixel.NeoPixel(machine.Pin(12), 8)
 
-UDP_IP = "192.168.1.114"
+UDP_IP = "IP_FROM_THIS_ESP"
 UDP_PORT = 5005
 
 sock = socket.socket(socket.AF_INET,  # Internet
