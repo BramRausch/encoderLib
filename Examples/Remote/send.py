@@ -1,7 +1,7 @@
 import encoderLib
 import socket
 
-UDP_IP = "192.168.1.114"
+UDP_IP = "IP_RECV_ESP"
 UDP_PORT = 5005
 MESSAGE = "Hello, World!"
 
